@@ -31,13 +31,18 @@ function ChangeLevel (Levelnum: number) {
         tiles.setTilemap(tilemap`level9`)
     } else if (Levelnum == 5) {
         tiles.setTilemap(tilemap`level10`)
-    } else {
+    } else if (Levelnum == 6) {
         tiles.setTilemap(tilemap`level7`)
+    } else if (Levelnum == 7) {
+        tiles.setTilemap(tilemap`level11`)
+    } else {
+    	
     }
     tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorDark1)
 }
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleBlueCrystal, function (sprite, location) {
-    game.over(true, effects.splatter)
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile20`, function (sprite, location) {
+    CurrentLevel += 1
+    ChangeLevel(CurrentLevel)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile5`, function (sprite, location) {
     tiles.setTileAt(tiles.getTileLocation(12, 4), sprites.dungeon.doorOpenEast)
